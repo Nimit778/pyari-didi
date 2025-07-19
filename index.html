@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎉 Birthday Countdown 🎂</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #ffe6f0;
+      color: #ff3399;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .countdown div {
+      background: #fff0f5;
+      border: 2px dashed #ff66b2;
+      padding: 1rem;
+      border-radius: 20px;
+      min-width: 80px;
+    }
+    .countdown div span {
+      display: block;
+      font-size: 1.8rem;
+      color: #e60073;
+    }
+    footer {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff0f8;
+      border: 3px solid #ff69b4;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 0 20px pink;
+      z-index: 9999;
+      animation: pop 0.8s ease;
+    }
+    .popup h2 {
+      color: #e60073;
+      font-size: 2rem;
+    }
+    .popup p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+    @keyframes pop {
+      0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+    }
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .countdown div {
+        min-width: 60px;
+        padding: 0.8rem;
+      }
+      .countdown div span {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎂 Countdown to My Birthday 🎉</h1>
+  <p>🎈 Birthday Date: <strong>28 July 2025</strong> 🎁</p>
+  <div class="countdown">
+    <div><span id="days">0</span> Days</div>
+    <div><span id="hours">0</span> Hrs</div>
+    <div><span id="minutes">0</span> Min</div>
+    <div><span id="seconds">0</span> Sec</div>
+  </div>
+  <footer>
+    💕 Stay tuned for the celebration! 🎀<br/>
+    Made with love 💖
+  </footer>
+  <div id="popup" class="popup">
+    <h2>🎉 Happy Birthday Bandriya! 🎂</h2>
+    <p>You're not just my sister, you're my cutest chaos & forever favorite monkey! 🐒💖✨</p>
+  </div>
+  <script>
+    const countdown = () => {
+      const birthdayDate = new Date("2025-07-28T00:00:00").getTime();
+      const now = new Date().getTime();
+      const gap = birthdayDate - now;
+      const second = 1000;
+      const minute = second * 60;
+      const hour = minute * 60;
+      const day = hour * 24;
+      const d = Math.floor(gap / day);
+      const h = Math.floor((gap % day) / hour);
+      const m = Math.floor((gap % hour) / minute);
+      const s = Math.floor((gap % minute) / second);
+      document.getElementById("days").innerText = d >= 0 ? d : 0;
+      document.getElementById("hours").innerText = h >= 0 ? h : 0;
+      document.getElementById("minutes").innerText = m >= 0 ? m : 0;
+      document.getElementById("seconds").innerText = s >= 0 ? s : 0;
+      if (gap <= 0) {
+        document.getElementById("popup").style.display = "block";
+        clearInterval(timer);
+      }
+    };
+    const timer = setInterval(countdown, 1000);
+    countdown();
+  </script>
+</body>
+</html>
